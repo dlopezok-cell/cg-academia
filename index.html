@@ -38,9 +38,9 @@
   /* hero */
   .hero{background:linear-gradient(135deg,var(--pdark),var(--p) 60%,#7c3aed);color:#fff;border-radius:0 0 32px 32px;overflow:hidden}
   .hero-in{display:grid;grid-template-columns:1.1fr .9fr;column-gap:30px;align-items:center;padding:54px 0 60px;grid-template-areas:"title photo" "rest photo"}
-  .h-title{grid-area:title}
+  .h-title{grid-area:title;align-self:end}
   .hero-card{grid-area:photo}
-  .h-rest{grid-area:rest;margin-top:16px}
+  .h-rest{grid-area:rest;align-self:start;margin-top:16px}
   .hero h1{font-size:46px;line-height:1.05;font-weight:800;letter-spacing:-1px}
   .hero h1 span{color:#ffd36b}
   .hero p{margin-top:16px;font-size:17px;color:rgba(255,255,255,.85);max-width:440px}
@@ -185,10 +185,12 @@
       <div class="h-rest">
         <p>Asistentes sociales, abogados laborales y expertos en CAE te enseñan a resolver tus trámites — y si necesitas más, agenda un 1 a 1.</p>
         <div class="pills">
-          <span class="chip">⚖️ Laboral</span>
-          <span class="chip">🤝 Asistente social</span>
-          <span class="chip">🎓 CAE</span>
           <span class="chip">👨‍👩‍👧 Familia</span>
+          <span class="chip">📜 Herencias</span>
+          <span class="chip">💼 Laboral</span>
+          <span class="chip">💳 Deudas</span>
+          <span class="chip">🎓 CAE</span>
+          <span class="chip">🤝 Asistente social</span>
         </div>
         <div class="btns">
           <a class="btn btn-w">Ver charlas gratis →</a>
