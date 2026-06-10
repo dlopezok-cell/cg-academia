@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carmen Gloria Academia · Asesorías, charlas y 1 a 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--p:#6d28d9;--p2:#5b1fb8;--pdark:#2c1259;--a:#fb7185;--a2:#f4566d;--asoft:#ffe4e8;--ink:#160f24;--mut:#6f6690;--bg:#f6f2ff;--card:#fff;--line:#ece4fb;--gold:#f0a500;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;border:none;font-family:inherit;transition:.15s}
+  .btn-p{background:var(--p);color:#fff}.btn-p:hover{background:var(--p2)}
+  .btn-a{background:var(--a);color:#fff}.btn-a:hover{background:var(--a2)}
+  .btn-w{background:#fff;color:var(--p)}.btn-line{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--p)}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--a2)}
+  section{padding:54px 0}
+  h2.t{font-size:30px;font-weight:800;letter-spacing:-.5px}
+  .stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+  .banner{background:var(--ink);color:#fff;text-align:center;font-size:12px;padding:8px}.banner b{color:var(--a)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(246,242,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;gap:22px;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+  .logo .mk{width:34px;height:34px;border-radius:10px;background:var(--p);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px}
+  .nav-in nav{display:flex;gap:22px;font-size:14px;font-weight:600;margin-left:8px}
+  .nav-in nav a:hover{color:var(--p)}
+  .nav-sp{flex:1}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  @media(max-width:900px){.nav-in nav{display:none}}
+
+  /* hero */
+  .hero{background:linear-gradient(135deg,var(--pdark),var(--p) 60%,#7c3aed);color:#fff;border-radius:0 0 32px 32px;overflow:hidden}
+  .hero-in{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:54px 0 60px}
+  .hero h1{font-size:46px;line-height:1.05;font-weight:800;letter-spacing:-1px}
+  .hero h1 span{color:#ffd36b}
+  .hero p{margin-top:16px;font-size:17px;color:rgba(255,255,255,.85);max-width:440px}
+  .hero .pills{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+  .hero .chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:600}
+  .hero .btns{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+  .hero-card{position:relative}
+  .hero-card .ph{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);aspect-ratio:4/5;background:var(--asoft)}
+  .hero-card .ph img{width:100%;height:100%;object-fit:cover;object-position:top center}
+  .hero-card .tagcard{position:absolute;left:-16px;bottom:18px;background:#fff;color:var(--ink);border-radius:16px;padding:13px 16px;box-shadow:0 14px 34px rgba(0,0,0,.25);display:flex;align-items:center;gap:11px;max-width:240px}
+  .hero-card .tagcard .pl{width:40px;height:40px;border-radius:11px;background:var(--a);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .hero-card .tagcard b{font-size:13px}.hero-card .tagcard small{font-size:11px;color:var(--mut)}
+  @media(max-width:900px){.hero-in{grid-template-columns:1fr}.hero h1{font-size:33px}.hero-card{max-width:330px;margin:0 auto}}
+
+  /* franja gratis */
+  .freebar{background:var(--a);color:#fff;border-radius:18px;margin-top:-30px;position:relative;z-index:5;padding:20px 26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 16px 40px rgba(251,113,133,.3)}
+  .freebar .big{font-size:18px;font-weight:800}
+  .freebar .sm{font-size:14px;color:rgba(255,255,255,.9)}
+  .freebar .sp{flex:1}
+
+  /* categorías */
+  .cats{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .catpill{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;cursor:pointer;transition:.15s}
+  .catpill:hover{border-color:var(--p);transform:translateY(-2px)}
+  .catpill .e{font-size:20px}
+
+  /* grid cursos */
+  .head-row{display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .course{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(22,15,36,.07);transition:.15s;cursor:pointer}
+  .course:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(22,15,36,.13)}
+  .course .thumb{height:170px;position:relative;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px}
+  .course .thumb .play{position:absolute;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--p);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .course .badge{position:absolute;top:12px;left:12px;font-size:11px;font-weight:700;letter-spacing:.5px;padding:5px 11px;border-radius:999px;background:#fff;color:var(--p)}
+  .course .badge.free{background:#19a45a;color:#fff}
+  .course .badge.top{background:var(--ink);color:#ffd36b}
+  .course .in{padding:16px 18px}
+  .course .cat{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--a2)}
+  .course h3{font-size:17px;font-weight:800;margin-top:5px;line-height:1.25}
+  .course .who{display:flex;align-items:center;gap:9px;margin-top:12px}
+  .course .who img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+  .course .who span{font-size:13px;color:var(--mut)}
+  .course .foot{display:flex;align-items:center;justify-content:space-between;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
+  .course .pr{font-weight:800;font-size:18px}.course .pr small{font-size:12px;color:var(--mut);text-decoration:line-through;font-weight:500;margin-left:5px}
+  .course .pr.free{color:#19a45a}
+
+  /* 1 a 1 high ticket */
+  .premium{background:linear-gradient(135deg,#1d1235,#3a1d6e);color:#fff;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center}
+  .premium .tx{padding:50px 46px}
+  .premium .tag{display:inline-block;background:rgba(255,211,107,.18);color:#ffd36b;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+  .premium h2{font-size:34px;font-weight:800;letter-spacing:-.5px;margin-top:14px;line-height:1.1}
+  .premium p{color:rgba(255,255,255,.82);margin-top:14px;font-size:16px;max-width:430px}
+  .premium ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:10px}
+  .premium li{display:flex;gap:10px;font-size:15px}.premium li::before{content:"✦";color:#ffd36b}
+  .premium .pricebox{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}
+  .premium .pricebox b{font-size:34px;font-weight:800}.premium .pricebox small{color:rgba(255,255,255,.7)}
+  .premium .media{position:relative;height:100%;min-height:380px;background:linear-gradient(160deg,var(--a),#3a1d6e)}
+  .premium .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+  @media(max-width:900px){.premium{grid-template-columns:1fr}.premium h2{font-size:27px}.premium .media{min-height:320px}}
+
+  /* expertos */
+  .experts{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
+  @media(max-width:900px){.experts{grid-template-columns:repeat(2,1fr)}}
+  .expert{background:var(--card);border-radius:18px;padding:22px;text-align:center;box-shadow:0 10px 28px rgba(22,15,36,.06)}
+  .expert img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto}
+  .expert h4{margin-top:12px;font-size:16px;font-weight:800}
+  .expert .role{font-size:12px;color:var(--a2);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+  .expert .meta{font-size:12px;color:var(--mut);margin-top:6px}
+
+  /* steps embudo */
+  .funnel{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  @media(max-width:900px){.funnel{grid-template-columns:1fr}}
+  .fstep{background:var(--card);border-radius:18px;padding:26px;border-top:4px solid var(--p)}
+  .fstep .n{font-size:13px;font-weight:800;color:var(--a2);letter-spacing:1px}
+  .fstep h4{font-size:18px;font-weight:800;margin-top:6px}
+  .fstep p{color:var(--mut);font-size:14px;margin-top:7px}
+
+  footer{background:var(--ink);color:#b9aed0;padding:50px 0 26px;margin-top:40px}
+  .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px}
+  footer h5{color:#fff;font-size:14px;margin-bottom:12px}
+  footer a{display:block;color:#9d92ba;font-size:14px;padding:4px 0}
+  .fb{border-top:1px solid #2e2447;margin-top:30px;padding-top:18px;font-size:13px;color:#7e739c;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media(max-width:900px){.fg{grid-template-columns:1fr 1fr}}
+
+  /* ===== móvil / iPhone ===== */
+  @media(max-width:560px){
+    .wrap{padding:0 16px}
+    .nav-in{height:56px;gap:10px}
+    .logo{font-size:17px}
+    .nav-cta .btn-ghost{display:none}
+    .nav-cta .btn{padding:10px 16px;font-size:13px}
+    .hero-in{padding:34px 0 42px}
+    .hero h1{font-size:27px}
+    .hero p{font-size:15px}
+    .hero .btns .btn{flex:1;justify-content:center}
+    .hero-card{max-width:300px}
+    .hero-card .tagcard{left:0;max-width:100%}
+    .freebar{flex-direction:column;align-items:flex-start;text-align:left;padding:18px 20px}
+    .freebar .btn{width:100%;justify-content:center}
+    section{padding:38px 0}
+    h2.t{font-size:23px}
+    .premium .tx{padding:32px 22px}
+    .premium h2{font-size:24px}
+    .premium .pricebox b{font-size:28px}
+    .experts{grid-template-columns:repeat(2,1fr)}
+    .fg{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="logo"><span class="mk">▶</span> CG Academia</div>
+    <nav>
+      <a href="#charlas">Charlas gratis</a>
+      <a href="#cursos">Asesorías</a>
+      <a href="#expertos">Expertos</a>
+      <a href="#unoauno">1 a 1</a>
+    </nav>
+    <div class="nav-sp"></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost">Ingresar</a>
+      <a class="btn btn-p">Registrarme</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div class="hero-in">
+      <div>
+        <span class="eyebrow" style="color:#ffd36b">Aprende y resuelve con expertos</span>
+        <h1 style="margin-top:12px">Charlas <span>gratis</span> y asesorías que te cambian la vida.</h1>
+        <p>Asistentes sociales, abogados laborales y expertos en CAE te enseñan a resolver tus trámites — y si necesitas más, agenda un 1 a 1.</p>
+        <div class="pills">
+          <span class="chip">⚖️ Laboral</span>
+          <span class="chip">🤝 Asistente social</span>
+          <span class="chip">🎓 CAE</span>
+          <span class="chip">👨‍👩‍👧 Familia</span>
+        </div>
+        <div class="btns">
+          <a class="btn btn-w">Ver charlas gratis →</a>
+          <a class="btn btn-line">Explorar asesorías</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="ph"><img src="https://dlopezok-cell.github.io/carmen-gloria-conecta/carmen-gloria.jpg" alt="Carmen Gloria"></div>
+        <div class="tagcard"><div class="pl">▶</div><div><b>Charla en vivo gratis</b><br><small>Jueves 20:00 · +2.300 inscritos</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRANJA GRATIS -->
+<div class="wrap">
+  <div class="freebar">
+    <div>
+      <div class="big">🎁 Empieza gratis esta semana</div>
+      <div class="sm">Inscríbete a una charla en vivo y recibe tu guía descargable, sin costo.</div>
+    </div>
+    <div class="sp"></div>
+    <a class="btn btn-w">Reservar mi cupo gratis</a>
+  </div>
+</div>
+
+<!-- CATEGORIAS -->
+<section style="padding-top:36px">
+  <div class="wrap">
+    <h2 class="t">Explora por área</h2>
+    <div class="cats">
+      <div class="catpill"><span class="e">🤝</span> Asistente social</div>
+      <div class="catpill"><span class="e">⚖️</span> Laboral</div>
+      <div class="catpill"><span class="e">🎓</span> CAE y deudas estudiantiles</div>
+      <div class="catpill"><span class="e">👨‍👩‍👧</span> Familia</div>
+      <div class="catpill"><span class="e">🏠</span> Vivienda y subsidios</div>
+      <div class="catpill"><span class="e">💳</span> Deudas</div>
+      <div class="catpill"><span class="e">🧾</span> Trámites del Estado</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARLAS GRATIS -->
+<section id="charlas">
+  <div class="wrap">
+    <div class="head-row">
+      <div><span class="eyebrow">Punto de partida</span><h2 class="t" style="margin-top:6px">Charlas gratis en vivo</h2></div>
+      <a class="btn btn-ghost">Ver todas</a>
+    </div>
+    <div class="grid">
+      <div class="course">
+        <div class="thumb" style="background:linear-gradient(135deg,#7c3aed,#3a1d6e)">🤝<div class="play">▶</div><span class="badge free">GRATIS</span></div>
+        <div class="in">
+          <div class="cat">Asistente social</div>
+          <h3>Cómo postular a subsidios y beneficios del Estado</h3>
+          <div class="who"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=80&q=80"><span>Daniela Rojas · Asistente social</span></div>
+          <div class="foot"><div class="pr free">Gratis</div><span style="font-size:12px;color:var(--mut)">🟢 Jue 20:00</span></div>
+        </div>
+      </div>
+      <div class="course">
+        <div class="thumb" style="background:linear-gradient(135deg,#fb7185,#b91d4e)">⚖️<div class="play">▶</div><span class="badge free">GRATIS</span></div>
+        <div class="in">
+          <div class="cat">Laboral</div>
+          <h3>Despido y finiquito: lo que sí o sí debes saber</h3>
+          <div class="who"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80"><span>Rodrigo Salas · Abogado laboral</span></div>
+          <div class="foot"><div class="pr free">Gratis</div><span style="font-size:12px;color:var(--mut)">🟢 Mar 19:00</span></div>
+        </div>
+      </div>
+      <div class="course">
+        <div class="thumb" style="background:linear-gradient(135deg,#0ea5a4,#0f5e3a)">🎓<div class="play">▶</div><span class="badge free">GRATIS</span></div>
+        <div class="in">
+          <div class="cat">CAE</div>
+          <h3>CAE: cómo entender y bajar tu deuda estudiantil</h3>
+          <div class="who"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=80&q=80"><span>Felipe Núñez · Experto financiero</span></div>
+          <div class="foot"><div class="pr free">Gratis</div><span style="font-size:12px;color:var(--mut)">🟢 Lun 20:30</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASESORIAS / CURSOS -->
+<section id="cursos" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head-row">
+      <div><span class="eyebrow">Aprende a tu ritmo</span><h2 class="t" style="margin-top:6px">Asesorías en curso</h2></div>
+      <a class="btn btn-ghost">Ver catálogo</a>
+    </div>
+    <div class="grid">
+      <div class="course">
+        <div class="thumb" style="background:linear-gradient(135deg,#7c3aed,#c026d3)">🤝<span class="badge">CURSO</span></div>
+        <div class="in">
+          <div class="cat">Asistente social</div>
+          <h3>Guía completa: beneficios sociales y cómo postular</h3>
+          <div class="who"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=80&q=80"><span>Daniela Rojas</span></div>
+          <div class="stars" style="margin-top:8px">★★★★★ <span style="color:var(--mut)">(312)</span></div>
+          <div class="foot"><div class="pr">$19.990 <small>$39.990</small></div><span style="font-size:12px;color:var(--mut)">8 clases</span></div>
+        </div>
+      </div>
+      <div class="course">
+        <div class="thumb" style="background:linear-gradient(135deg,#fb7185,#7c3aed)">⚖️<span class="badge">CURSO</span></div>
+        <div class="in">
+          <div class="cat">Laboral</div>
+          <h3>Defiende tus derechos: despidos, licencias y finiquitos</h3>
+          <div class="who"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80"><span>Rodrigo Salas</span></div>
+          <div class="stars" style="margin-top:8px">★★★★★ <span style="color:var(--mut)">(198)</span></div>
+          <div class="foot"><div class="pr">$24.990 <small>$49.990</small></div><span style="font-size:12px;color:var(--mut)">10 clases</span></div>
+        </div>
+      </div>
+      <div class="course">
+        <div class="thumb" style="background:linear-gradient(135deg,#0ea5a4,#7c3aed)">🎓<span class="badge top">★ TOP</span></div>
+        <div class="in">
+          <div class="cat">CAE</div>
+          <h3>Renegocia tu CAE paso a paso (con plantillas)</h3>
+          <div class="who"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=80&q=80"><span>Felipe Núñez</span></div>
+          <div class="stars" style="margin-top:8px">★★★★★ <span style="color:var(--mut)">(421)</span></div>
+          <div class="foot"><div class="pr">$29.990 <small>$59.990</small></div><span style="font-size:12px;color:var(--mut)">12 clases</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1 A 1 HIGH TICKET -->
+<section id="unoauno">
+  <div class="wrap">
+    <div class="premium">
+      <div class="tx">
+        <span class="tag">Acompañamiento premium</span>
+        <h2>Tu caso, resuelto contigo: <span style="color:#ffd36b">1 a 1</span> con un experto.</h2>
+        <p>Cuando tu situación necesita más que un curso, agenda sesiones privadas y un plan de acción personalizado, paso a paso hasta resolverlo.</p>
+        <ul>
+          <li>Diagnóstico completo de tu caso</li>
+          <li>Sesiones privadas por videollamada</li>
+          <li>Plan de acción y documentos listos</li>
+          <li>Acompañamiento por WhatsApp entre sesiones</li>
+        </ul>
+        <div class="pricebox"><b>Desde $149.990</b><small>· planes de 3 a 6 sesiones</small></div>
+        <a class="btn btn-a">Postular a una sesión 1 a 1 →</a>
+      </div>
+      <div class="media"><img src="https://dlopezok-cell.github.io/carmen-gloria-conecta/carmen-gloria.jpg" alt="Carmen Gloria"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EMBUDO -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <span class="eyebrow">Cómo funciona</span>
+    <h2 class="t" style="margin-top:6px">De la charla gratis a la solución</h2>
+    <div class="funnel">
+      <div class="fstep"><div class="n">PASO 1 · GRATIS</div><h4>Asiste a una charla en vivo</h4><p>Conoce a los expertos y resuelve tus primeras dudas sin pagar nada.</p></div>
+      <div class="fstep"><div class="n">PASO 2 · ACCESIBLE</div><h4>Toma una asesoría en curso</h4><p>Profundiza con clases grabadas, plantillas y guías por solo $19.990–$29.990.</p></div>
+      <div class="fstep"><div class="n">PASO 3 · PREMIUM</div><h4>Agenda tu 1 a 1</h4><p>Si tu caso lo amerita, un experto te acompaña en privado hasta resolverlo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTOS -->
+<section id="expertos">
+  <div class="wrap">
+    <span class="eyebrow">Quiénes te enseñan</span>
+    <h2 class="t" style="margin-top:6px">Expertos verificados</h2>
+    <div class="experts">
+      <div class="expert"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80"><h4>Daniela Rojas</h4><div class="role">Asistente social</div><div class="meta">★ 4.9 · 312 alumnos</div></div>
+      <div class="expert"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=200&q=80"><h4>Rodrigo Salas</h4><div class="role">Abogado laboral</div><div class="meta">★ 4.8 · 198 alumnos</div></div>
+      <div class="expert"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80"><h4>Felipe Núñez</h4><div class="role">Experto CAE</div><div class="meta">★ 5.0 · 421 alumnos</div></div>
+      <div class="expert"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"><h4>Camila Fuentes</h4><div class="role">Familia y vivienda</div><div class="meta">★ 4.9 · 256 alumnos</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section>
+  <div class="wrap">
+    <div style="background:linear-gradient(135deg,var(--p),var(--pdark));color:#fff;border-radius:28px;padding:50px 40px;text-align:center">
+      <h2 style="font-size:30px;font-weight:800">Empieza hoy con una charla gratis</h2>
+      <p style="color:rgba(255,255,255,.85);max-width:520px;margin:12px auto 22px;font-size:16px">Sin tarjeta, sin compromiso. Aprende de los mejores y decide tu siguiente paso.</p>
+      <a class="btn btn-a">Reservar mi cupo gratis →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div><div class="logo" style="color:#fff"><span class="mk">▶</span> CG Academia</div><p style="margin-top:14px;font-size:14px;color:#9d92ba;max-width:300px">Aprende a resolver tus trámites con expertos. Charlas gratis, asesorías en curso y acompañamiento 1 a 1.</p></div>
+      <div><h5>Aprende</h5><a>Charlas gratis</a><a>Asesorías</a><a>Sesiones 1 a 1</a></div>
+      <div><h5>Áreas</h5><a>Asistente social</a><a>Laboral</a><a>CAE</a><a>Familia</a></div>
+      <div><h5>Soporte</h5><a>Ayuda</a><a>Ser experto</a><a>Contacto</a></div>
+    </div>
+    <div class="fb"><span>© 2026 CG Academia</span><span>Webpay · Mercado Pago · Flow</span></div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}));
+</script>
+</body>
+</html>
