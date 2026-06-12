@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi panel · CG Academia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--p:#6d28d9;--p2:#5b1fb8;--pdark:#2c1259;--a:#fb7185;--a2:#f4566d;--asoft:#ffe4e8;--ink:#160f24;--mut:#6f6690;--bg:#f6f2ff;--card:#fff;--line:#ece4fb;--green:#19a45a;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;border:none;font-family:inherit}
+  .btn-p{background:var(--p);color:#fff}.btn-a{background:var(--a);color:#fff}.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--p)}
+  header.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1040px;margin:0 auto;padding:0 18px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px}
+  .logo .mk{width:30px;height:30px;border-radius:9px;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .avt{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--p));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+
+  .hello{padding:26px 0 6px}
+  .hello h1{font-size:26px;font-weight:800}
+  .hello p{color:var(--mut);font-size:15px}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  @media(max-width:620px){.stat-row{grid-template-columns:1fr}}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+  .stat b{font-size:22px;font-weight:800;color:var(--p)}.stat span{font-size:13px;color:var(--mut);display:block}
+
+  h2.t{font-size:18px;font-weight:800;margin:30px 0 12px;display:flex;align-items:center;justify-content:space-between}
+  h2.t a{font-size:13px;color:var(--p);font-weight:700}
+
+  /* próxima asesoría */
+  .next{background:linear-gradient(135deg,var(--p),var(--pdark));color:#fff;border-radius:18px;padding:22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .next .ic{width:54px;height:54px;border-radius:14px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:24px}
+  .next .info{flex:1;min-width:180px}
+  .next .info b{font-size:16px}.next .info div{font-size:13px;color:rgba(255,255,255,.85)}
+  .next .btn{background:#fff;color:var(--p)}
+
+  .courses{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.courses{grid-template-columns:1fr}}
+  .ccard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;gap:14px;padding:14px;align-items:center;cursor:pointer;transition:.12s}
+  .ccard:hover{box-shadow:0 10px 24px rgba(22,15,36,.08)}
+  .ccard .th{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;flex-shrink:0}
+  .ccard .nm{font-weight:700;font-size:15px}
+  .ccard .meta{font-size:12px;color:var(--mut);margin:3px 0 7px}
+  .bar{height:7px;background:var(--bg);border-radius:6px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--p);border-radius:6px}
+
+  .lives{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:680px){.lives{grid-template-columns:1fr}}
+  .live{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+  .live .tag{font-size:11px;font-weight:800;letter-spacing:.5px;color:var(--green)}
+  .live h4{font-size:15px;font-weight:700;margin:6px 0}
+  .live .when{font-size:12px;color:var(--mut)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="logo" href="index.html"><span class="mk">▶</span> CG Academia</a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a class="btn btn-ghost" href="agendar.html">+ Agendar</a>
+    <div class="avt">CG</div>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div class="hello">
+    <h1>Hola, Carolina 👋</h1>
+    <p>Este es tu panel. Continúa donde quedaste o agenda tu próxima asesoría.</p>
+    <div class="stat-row">
+      <div class="stat"><b>2</b><span>cursos en progreso</span></div>
+      <div class="stat"><b>1</b><span>asesoría agendada</span></div>
+      <div class="stat"><b>3</b><span>charlas guardadas</span></div>
+    </div>
+  </div>
+
+  <h2 class="t">Tu próxima asesoría</h2>
+  <div class="next">
+    <div class="ic">🎥</div>
+    <div class="info">
+      <b>Asesoría con Paula Vega · Abogada de familia</b>
+      <div>Martes 16 de junio · 11:30 · Videollamada (HD)</div>
+    </div>
+    <a class="btn" href="#">Entrar a la sala →</a>
+  </div>
+
+  <h2 class="t">Mis cursos <a href="index.html#cursos">Ver catálogo</a></h2>
+  <div class="courses">
+    <a class="ccard" href="curso.html">
+      <div class="th" style="background:linear-gradient(135deg,#fb7185,#7c3aed)">💔</div>
+      <div style="flex:1">
+        <div class="nm">Divorcio: cómo iniciarlo y qué esperar</div>
+        <div class="meta">Paula Vega · clase 3 de 10</div>
+        <div class="bar"><i style="width:30%"></i></div>
+      </div>
+    </a>
+    <a class="ccard" href="curso.html">
+      <div class="th" style="background:linear-gradient(135deg,#b14fd8,#7c3aed)">📜</div>
+      <div style="flex:1">
+        <div class="nm">Herencias: cómo repartir sin pelear</div>
+        <div class="meta">Paula Vega · clase 7 de 12</div>
+        <div class="bar"><i style="width:58%"></i></div>
+      </div>
+    </a>
+  </div>
+
+  <h2 class="t">Próximas charlas en vivo</h2>
+  <div class="lives">
+    <div class="live"><div class="tag">🟢 EN VIVO · JUE 20:00</div><h4>Subsidios y beneficios del Estado</h4><div class="when">Daniela Rojas · Asistente social</div></div>
+    <div class="live"><div class="tag">🟢 EN VIVO · MAR 19:00</div><h4>Pensión de alimentos: cómo exigirla</h4><div class="when">Paula Vega · Abogada de familia</div></div>
+    <div class="live"><div class="tag">🟢 EN VIVO · LUN 20:30</div><h4>Cuidar tu salud mental en momentos difíciles</h4><div class="when">Andrés Soto · Sicólogo</div></div>
+  </div>
+
+  <div style="margin:30px 0 50px;text-align:center">
+    <a class="btn btn-a" href="agendar.html">Agendar una asesoría 1 a 1 →</a>
+  </div>
+</div>
+</body>
+</html>

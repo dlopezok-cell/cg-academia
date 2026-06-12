@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso · Divorcio · CG Academia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--p:#6d28d9;--p2:#5b1fb8;--pdark:#2c1259;--a:#fb7185;--ink:#160f24;--mut:#6f6690;--bg:#f6f2ff;--card:#fff;--line:#ece4fb;--green:#19a45a;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  a{text-decoration:none;color:inherit}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;border:none;font-family:inherit}
+  .btn-p{background:var(--p);color:#fff}.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--p)}
+  header.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:58px;max-width:1180px;margin:0 auto;padding:0 18px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px}
+  .logo .mk{width:28px;height:28px;border-radius:8px;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .back{font-size:14px;color:var(--mut);font-weight:600}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:18px}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+  .player{background:#160f24;border-radius:18px;aspect-ratio:16/9;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .player img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+  .player .play{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--p);display:flex;align-items:center;justify-content:center;font-size:30px;z-index:2;cursor:pointer}
+  .player .pbar{position:absolute;left:0;right:0;bottom:0;height:38px;background:linear-gradient(transparent,rgba(0,0,0,.6));display:flex;align-items:center;gap:10px;padding:0 14px;color:#fff;font-size:12px;z-index:2}
+  .player .pbar .line{flex:1;height:4px;background:rgba(255,255,255,.3);border-radius:3px}
+  .player .pbar .line i{display:block;width:32%;height:100%;background:var(--a);border-radius:3px}
+
+  h1{font-size:22px;font-weight:800;margin-top:18px}
+  .who{display:flex;align-items:center;gap:10px;margin-top:10px}
+  .who img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+  .who b{font-size:14px}.who span{font-size:12px;color:var(--mut)}
+  .tabs{display:flex;gap:6px;margin:18px 0 0;border-bottom:1px solid var(--line)}
+  .tabs button{border:none;background:transparent;font-family:inherit;font-weight:700;font-size:14px;padding:11px 4px;margin-right:18px;color:var(--mut);cursor:pointer;border-bottom:2px solid transparent}
+  .tabs button.on{color:var(--p);border-color:var(--p)}
+  .tabpane{padding:16px 0;font-size:14.5px;color:#3d3352;display:none}
+  .tabpane.on{display:block}
+  .tabpane p{margin-bottom:10px}
+  .mat{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:8px;font-size:14px}
+  .mat .fi{width:30px;height:36px;border-radius:5px;background:var(--a);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+  .actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+
+  /* curriculum */
+  .curr{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:sticky;top:74px}
+  .curr .hd{padding:16px 18px;border-bottom:1px solid var(--line)}
+  .curr .hd b{font-size:15px}
+  .curr .hd .prog{font-size:12px;color:var(--mut);margin-top:6px}
+  .curr .hd .bar{height:7px;background:var(--bg);border-radius:6px;margin-top:6px;overflow:hidden}
+  .curr .hd .bar i{display:block;height:100%;width:30%;background:var(--green);border-radius:6px}
+  .mod{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);padding:14px 18px 6px}
+  .les{display:flex;align-items:center;gap:11px;padding:11px 18px;cursor:pointer;font-size:14px;border-left:3px solid transparent}
+  .les:hover{background:var(--bg)}
+  .les.on{background:#f3eefe;border-color:var(--p);font-weight:700}
+  .les .ck{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0}
+  .les.done .ck{background:var(--green);border-color:var(--green)}
+  .les.on .ck{border-color:var(--p)}
+  .les .dur{margin-left:auto;font-size:12px;color:var(--mut)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="logo" href="panel.html"><span class="mk">▶</span> CG Academia</a>
+  <a class="back" href="panel.html">← Mi panel</a>
+</div></header>
+
+<div class="wrap"><div class="grid">
+  <div>
+    <div class="player">
+      <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=70" alt="">
+      <div class="play">▶</div>
+      <div class="pbar"><span>04:12</span><div class="line"><i></i></div><span>13:40</span> ⚙ ⛶</div>
+    </div>
+    <h1 id="ltitle">Clase 3 · Cómo se inicia un divorcio</h1>
+    <div class="who">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=80&q=80">
+      <div><b>Paula Vega</b><br><span>Abogada de familia</span></div>
+    </div>
+
+    <div class="tabs">
+      <button class="on" onclick="tab(0)">Descripción</button>
+      <button onclick="tab(1)">Materiales</button>
+      <button onclick="tab(2)">Comentarios</button>
+    </div>
+    <div class="tabpane on" id="tp0">
+      <p>En esta clase aprenderás los <b>tipos de divorcio en Chile</b> (de común acuerdo y unilateral), los plazos y qué documentos necesitas para iniciarlo.</p>
+      <p>Al terminar sabrás exactamente cuál es tu caso y el primer paso a dar.</p>
+    </div>
+    <div class="tabpane" id="tp1">
+      <div class="mat"><div class="fi">PDF</div><div>Checklist de documentos para divorcio</div></div>
+      <div class="mat"><div class="fi">DOC</div><div>Plantilla de demanda (editable)</div></div>
+      <div class="mat"><div class="fi">PDF</div><div>Resumen de la clase 3</div></div>
+    </div>
+    <div class="tabpane" id="tp2">
+      <p style="color:var(--mut)">💬 142 comentarios · sé respetuoso con la comunidad.</p>
+      <p><b>María J.:</b> ¡Clarísima la explicación de los plazos! 🙌</p>
+      <p><b>Pedro G.:</b> ¿Sirve si llevamos 1 año separados de hecho?</p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-ghost">✓ Marcar como completada</button>
+      <button class="btn btn-p" onclick="nextLesson()">Siguiente clase →</button>
+    </div>
+  </div>
+
+  <div class="curr">
+    <div class="hd">
+      <b>Divorcio: cómo iniciarlo y qué esperar</b>
+      <div class="prog">Progreso · 30% completado</div>
+      <div class="bar"><i id="progbar"></i></div>
+    </div>
+    <div class="mod">Módulo 1 · Lo básico</div>
+    <div class="les done" onclick="pick(this,'Clase 1 · Tipos de divorcio en Chile')"><span class="ck">✓</span> Tipos de divorcio en Chile <span class="dur">08:20</span></div>
+    <div class="les done" onclick="pick(this,'Clase 2 · ¿Cuál es tu caso?')"><span class="ck">✓</span> ¿Cuál es tu caso? <span class="dur">06:05</span></div>
+    <div class="les on" onclick="pick(this,'Clase 3 · Cómo se inicia un divorcio')"><span class="ck">▶</span> Cómo se inicia un divorcio <span class="dur">13:40</span></div>
+    <div class="mod">Módulo 2 · El proceso</div>
+    <div class="les" onclick="pick(this,'Clase 4 · Documentos que necesitas')"><span class="ck"></span> Documentos que necesitas <span class="dur">09:10</span></div>
+    <div class="les" onclick="pick(this,'Clase 5 · Pensión y cuidado de los hijos')"><span class="ck"></span> Pensión y cuidado de los hijos <span class="dur">12:30</span></div>
+    <div class="les" onclick="pick(this,'Clase 6 · Bienes y compensación')"><span class="ck"></span> Bienes y compensación económica <span class="dur">10:55</span></div>
+    <div class="mod">Módulo 3 · Cierre</div>
+    <div class="les" onclick="pick(this,'Clase 7 · Errores que debes evitar')"><span class="ck"></span> Errores que debes evitar <span class="dur">07:40</span></div>
+    <div class="les" onclick="pick(this,'Clase 8 · Preguntas frecuentes')"><span class="ck"></span> Preguntas frecuentes <span class="dur">11:20</span></div>
+  </div>
+</div></div>
+
+<script>
+  function tab(i){
+    [0,1,2].forEach(function(n){document.getElementById('tp'+n).classList.toggle('on',n===i);});
+    document.querySelectorAll('.tabs button').forEach(function(b,n){b.classList.toggle('on',n===i);});
+  }
+  function pick(el,title){
+    document.querySelectorAll('.les').forEach(function(l){l.classList.remove('on');if(!l.querySelector('.ck').textContent.trim()){}});
+    el.classList.add('on');
+    document.getElementById('ltitle').textContent=title;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function nextLesson(){
+    var list=Array.prototype.slice.call(document.querySelectorAll('.les'));
+    var cur=document.querySelector('.les.on');
+    var i=list.indexOf(cur);
+    cur.classList.add('done'); cur.querySelector('.ck').textContent='✓';
+    if(i<list.length-1){ var nx=list[i+1]; cur.classList.remove('on'); nx.classList.add('on'); nx.querySelector('.ck').textContent='▶'; document.getElementById('ltitle').textContent=nx.childNodes[1].textContent.trim()? 'Clase · '+nx.textContent.trim().replace(/\d{2}:\d{2}$/,''):'Siguiente clase'; }
+    var done=document.querySelectorAll('.les.done').length, tot=list.length;
+    var pct=Math.round(done/tot*100);
+    document.getElementById('progbar').style.width=pct+'%';
+    document.querySelector('.prog').textContent='Progreso · '+pct+'% completado';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.getElementById('progbar').style.width='30%';
+</script>
+</body>
+</html>

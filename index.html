@@ -453,5 +453,10 @@
 <script>
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}));
 </script>
+<script>
+  document.querySelectorAll('.nav-cta a').forEach(function(a){a.setAttribute('href','login.html');});
+  document.querySelectorAll('#cursos .course, #charlas .course').forEach(function(c){c.style.cursor='pointer';c.addEventListener('click',function(){location.href='curso.html';});});
+  document.querySelectorAll('.expert').forEach(function(e){e.style.cursor='pointer';e.addEventListener('click',function(){location.href='experto.html';});});
+</script>
 </body>
 </html>
