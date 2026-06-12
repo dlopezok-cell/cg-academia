@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendar asesoría · CG Academia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--p:#6d28d9;--p2:#5b1fb8;--pdark:#2c1259;--a:#fb7185;--a2:#f4566d;--asoft:#ffe4e8;--ink:#160f24;--mut:#6f6690;--bg:#f6f2ff;--card:#fff;--line:#ece4fb;--green:#19a45a;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;border:none;font-family:inherit;transition:.15s}
+  .btn-p{background:var(--p);color:#fff}.btn-p:hover{background:var(--p2)}
+  .btn-p:disabled{background:#cfc4e6;cursor:not-allowed}
+  .btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--p)}
+
+  header.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1040px;margin:0 auto;padding:0 18px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px}
+  .logo .mk{width:30px;height:30px;border-radius:9px;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .back{font-size:14px;color:var(--mut);font-weight:600}
+
+  .head{padding:26px 0 6px}
+  .head h1{font-size:26px;font-weight:800}
+  .head p{color:var(--mut);font-size:15px;margin-top:3px}
+  .steps{display:flex;gap:8px;margin:16px 0 6px;flex-wrap:wrap}
+  .step{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--mut);background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:999px}
+  .step.on{color:var(--p);border-color:var(--p);background:#f3eefe}
+  .step .num{width:20px;height:20px;border-radius:50%;background:var(--line);color:var(--mut);display:flex;align-items:center;justify-content:center;font-size:11px}
+  .step.on .num{background:var(--p);color:#fff}
+
+  .grid{display:grid;grid-template-columns:1.4fr .9fr;gap:18px;margin:18px 0 50px;align-items:start}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .panel h3{font-size:15px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+
+  /* expertos */
+  .experts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.experts{grid-template-columns:1fr}}
+  .exp{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:14px;padding:11px;cursor:pointer;transition:.12s}
+  .exp:hover{border-color:var(--a)}
+  .exp.sel{border-color:var(--p);background:#f3eefe}
+  .exp img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+  .exp .nm{font-weight:700;font-size:14px}
+  .exp .ro{font-size:12px;color:var(--mut)}
+  .exp .ck{margin-left:auto;color:var(--p);font-weight:800;opacity:0}
+  .exp.sel .ck{opacity:1}
+
+  /* calendario */
+  .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .cal-top b{font-size:15px;text-transform:capitalize}
+  .navbtn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:16px;color:var(--p)}
+  .navbtn:disabled{opacity:.35;cursor:not-allowed}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .dow{text-align:center;font-size:11px;color:var(--mut);font-weight:700;padding-bottom:4px}
+  .day{aspect-ratio:1;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;background:var(--bg);position:relative}
+  .day.empty{background:transparent;cursor:default}
+  .day.off{color:#cfc4e6;background:#faf7ff;cursor:not-allowed}
+  .day.full{color:#bcaedd;background:#f3eefe;cursor:not-allowed;text-decoration:line-through}
+  .day.avail:hover{background:var(--asoft)}
+  .day.sel{background:var(--p);color:#fff}
+  .day .dot{position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--green)}
+  .day.sel .dot{background:#fff}
+  .legend{display:flex;gap:14px;margin-top:12px;font-size:11px;color:var(--mut);flex-wrap:wrap}
+  .legend span{display:flex;align-items:center;gap:5px}
+  .legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+  .slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .slot{padding:9px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;cursor:pointer;font-weight:600;background:#fff}
+  .slot:hover{border-color:var(--a)}
+  .slot.sel{background:var(--a);border-color:var(--a);color:#fff}
+  .slot.busy{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+  .hint{color:var(--mut);font-size:13px;margin-top:4px}
+
+  /* resumen */
+  .sum .row{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .sum .row span:first-child{color:var(--mut)}
+  .sum .row b{text-align:right}
+  .sum .total{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+  .sum .total .amt{font-size:24px;font-weight:800;color:var(--p)}
+  .pay{margin-top:12px;font-size:11px;color:var(--mut);text-align:center}
+  .placeholder{color:var(--mut);font-size:14px;padding:8px 0}
+
+  /* éxito */
+  .overlay{position:fixed;inset:0;background:rgba(28,18,55,.55);display:none;align-items:center;justify-content:center;z-index:50;padding:18px}
+  .overlay.show{display:flex}
+  .ok{background:#fff;border-radius:22px;max-width:430px;width:100%;padding:30px 26px;text-align:center}
+  .ok .ic{width:70px;height:70px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 14px}
+  .ok h2{font-size:22px;font-weight:800}
+  .ok p{color:var(--mut);font-size:14px;margin-top:6px}
+  .ok .det{background:var(--bg);border-radius:14px;padding:14px;margin:16px 0;text-align:left;font-size:14px}
+  .ok .det div{display:flex;justify-content:space-between;padding:4px 0}
+  .ok .det span{color:var(--mut)}
+  .ok .wa{background:#25d366;color:#fff;border-radius:12px;padding:11px;font-size:13px;font-weight:700;margin-bottom:10px}
+  .ok .actions{display:flex;flex-direction:column;gap:9px}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <div class="logo"><span class="mk">▶</span> CG Academia</div>
+  <a class="back" href="https://dlopezok-cell.github.io/cg-academia/">← Volver</a>
+</div></header>
+
+<div class="wrap">
+  <div class="head">
+    <h1>Agenda tu asesoría 1 a 1</h1>
+    <p>Elige a tu experto, el día y la hora. Te confirmamos por WhatsApp.</p>
+    <div class="steps">
+      <div class="step on" id="st1"><span class="num">1</span> Experto</div>
+      <div class="step" id="st2"><span class="num">2</span> Día y hora</div>
+      <div class="step" id="st3"><span class="num">3</span> Confirmar</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="panel" style="margin-bottom:16px">
+        <h3>👤 Elige a tu experto</h3>
+        <div class="experts" id="experts"></div>
+      </div>
+      <div class="panel">
+        <h3>📅 Elige el día</h3>
+        <div class="cal-top">
+          <button class="navbtn" id="prev">‹</button>
+          <b id="mlabel"></b>
+          <button class="navbtn" id="next">›</button>
+        </div>
+        <div class="cal" id="cal"></div>
+        <div class="legend">
+          <span><i style="background:var(--green)"></i> Disponible</span>
+          <span><i style="background:#bcaedd"></i> Sin cupos</span>
+          <span><i style="background:#dcd2f0"></i> No disponible</span>
+        </div>
+        <div style="margin-top:18px">
+          <h3 style="margin-bottom:8px">🕒 Horarios <span id="dlabel" style="color:var(--mut);font-weight:600;font-size:13px"></span></h3>
+          <div class="slots" id="slots"><div class="placeholder">Selecciona un día para ver los horarios.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel sum" style="position:sticky;top:78px">
+      <h3>🧾 Resumen</h3>
+      <div class="row"><span>Experto</span><b id="sExp">—</b></div>
+      <div class="row"><span>Especialidad</span><b id="sEsp">—</b></div>
+      <div class="row"><span>Fecha</span><b id="sFecha">—</b></div>
+      <div class="row"><span>Hora</span><b id="sHora">—</b></div>
+      <div class="row"><span>Duración</span><b>45 minutos</b></div>
+      <div class="row"><span>Modalidad</span><b>Videollamada</b></div>
+      <div class="total"><span style="color:var(--mut);font-size:13px;text-transform:uppercase;letter-spacing:1px">Total</span><span class="amt">$39.990</span></div>
+      <button class="btn btn-p" id="confirm" style="width:100%;justify-content:center;margin-top:14px" disabled>Confirmar y pagar</button>
+      <div class="pay">🔒 Pago seguro · Webpay · Mercado Pago · Tarjeta</div>
+    </div>
+  </div>
+</div>
+
+<!-- ÉXITO -->
+<div class="overlay" id="overlay"><div class="ok">
+  <div class="ic">✓</div>
+  <h2>¡Asesoría agendada!</h2>
+  <p>Te reservamos tu hora. Revisa los detalles:</p>
+  <div class="det">
+    <div><span>Experto</span><b id="oExp"></b></div>
+    <div><span>Fecha</span><b id="oFecha"></b></div>
+    <div><span>Hora</span><b id="oHora"></b></div>
+    <div><span>Modalidad</span><b>Videollamada (HD)</b></div>
+  </div>
+  <div class="wa">💬 Te enviamos el enlace y el recordatorio por WhatsApp</div>
+  <div class="actions">
+    <a class="btn btn-p" id="gcal" style="justify-content:center" target="_blank">📆 Agregar a Google Calendar</a>
+    <button class="btn btn-ghost" id="close" style="justify-content:center">Listo</button>
+  </div>
+</div></div>
+
+<script>
+  var EXPERTS=[
+    {id:1,nm:"Paula Vega",ro:"Abogada de familia",img:"1580489944761-15a19d654956"},
+    {id:2,nm:"Andrés Soto",ro:"Sicólogo",img:"1560250097-0b93528c311a"},
+    {id:3,nm:"Daniela Rojas",ro:"Asistente social",img:"1573497019940-1c28c88b4f3e"},
+    {id:4,nm:"Camila Fuentes",ro:"Familia y vivienda",img:"1544005313-94ddf0286df2"}
+  ];
+  var MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  var DOW=["L","M","M","J","V","S","D"];
+  var ALLSLOTS=["09:00","10:00","11:30","12:30","15:00","16:00","17:30","19:00"];
+
+  var state={exp:null,date:null,slot:null};
+  var view=new Date(); view.setDate(1);
+  var today=new Date(); today.setHours(0,0,0,0);
+
+  // experts
+  var ex=document.getElementById('experts');
+  EXPERTS.forEach(function(e){
+    var d=document.createElement('div'); d.className='exp';
+    d.innerHTML='<img src="https://images.unsplash.com/photo-'+e.img+'?auto=format&fit=crop&w=120&q=80"><div><div class="nm">'+e.nm+'</div><div class="ro">'+e.ro+'</div></div><span class="ck">✓</span>';
+    d.onclick=function(){
+      state.exp=e;
+      [].forEach.call(ex.children,function(c){c.classList.remove('sel')});
+      d.classList.add('sel');
+      document.getElementById('sExp').textContent=e.nm;
+      document.getElementById('sEsp').textContent=e.ro;
+      mark(); render();
+    };
+    ex.appendChild(d);
+  });
+
+  // calendario
+  function daystate(dt){
+    if(dt<today) return 'off';
+    var dow=dt.getDay(); // 0 dom 6 sab
+    if(dow===0) return 'off';            // domingo cerrado
+    var seed=(dt.getDate()*7+dt.getMonth()*3)%10;
+    if(dow===6) return seed<6?'off':'full'; // sábado casi siempre cerrado
+    if(seed===0||seed===1) return 'full'; // algunos días sin cupos
+    return 'avail';
+  }
+  function render(){
+    var cal=document.getElementById('cal'); cal.innerHTML='';
+    DOW.forEach(function(d){var h=document.createElement('div');h.className='dow';h.textContent=d;cal.appendChild(h);});
+    document.getElementById('mlabel').textContent=MESES[view.getMonth()]+' '+view.getFullYear();
+    var first=new Date(view.getFullYear(),view.getMonth(),1);
+    var startDow=(first.getDay()+6)%7; // lunes=0
+    for(var i=0;i<startDow;i++){var e=document.createElement('div');e.className='day empty';cal.appendChild(e);}
+    var dim=new Date(view.getFullYear(),view.getMonth()+1,0).getDate();
+    for(var d=1;d<=dim;d++){
+      var dt=new Date(view.getFullYear(),view.getMonth(),d); dt.setHours(0,0,0,0);
+      var st=daystate(dt);
+      var cell=document.createElement('div'); cell.className='day '+st; cell.textContent=d;
+      if(st==='avail') cell.innerHTML+='<span class="dot"></span>';
+      if(state.date && dt.getTime()===state.date.getTime()) cell.classList.add('sel');
+      if(st==='avail'){ (function(dt){ cell.onclick=function(){ state.date=dt; state.slot=null; render(); renderSlots(dt); mark(); }; })(dt); }
+      cal.appendChild(cell);
+    }
+    // nav prev disabled if before current month
+    var pm=new Date(view); pm.setMonth(pm.getMonth());
+    document.getElementById('prev').disabled=(view.getFullYear()===today.getFullYear() && view.getMonth()<=today.getMonth());
+  }
+  function renderSlots(dt){
+    var box=document.getElementById('slots'); box.innerHTML='';
+    document.getElementById('dlabel').textContent='· '+dt.getDate()+' de '+MESES[dt.getMonth()];
+    ALLSLOTS.forEach(function(t,i){
+      var busy=((dt.getDate()+i)%3===0);
+      var s=document.createElement('div'); s.className='slot'+(busy?' busy':''); s.textContent=t;
+      if(!busy){ s.onclick=function(){ state.slot=t; [].forEach.call(box.children,function(c){c.classList.remove('sel')}); s.classList.add('sel'); mark(); }; }
+      box.appendChild(s);
+    });
+  }
+  function fmtDate(dt){ return dt.getDate()+' '+MESES[dt.getMonth()]+' '+dt.getFullYear(); }
+  function mark(){
+    document.getElementById('sFecha').textContent=state.date?fmtDate(state.date):'—';
+    document.getElementById('sHora').textContent=state.slot||'—';
+    // steps
+    document.getElementById('st1').classList.toggle('on', !state.exp || true);
+    document.getElementById('st2').classList.toggle('on', !!state.exp);
+    document.getElementById('st3').classList.toggle('on', !!(state.date&&state.slot));
+    document.getElementById('confirm').disabled=!(state.exp&&state.date&&state.slot);
+  }
+  document.getElementById('prev').onclick=function(){ view.setMonth(view.getMonth()-1); render(); };
+  document.getElementById('next').onclick=function(){ view.setMonth(view.getMonth()+1); render(); };
+
+  document.getElementById('confirm').onclick=function(){
+    document.getElementById('oExp').textContent=state.exp.nm+' · '+state.exp.ro;
+    document.getElementById('oFecha').textContent=fmtDate(state.date);
+    document.getElementById('oHora').textContent=state.slot;
+    // google calendar link
+    var d=state.date, hh=parseInt(state.slot), mm=state.slot.indexOf('30')>0?30:0;
+    function pad(n){return (n<10?'0':'')+n;}
+    var start=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(hh)+pad(mm)+'00';
+    var endh=mm===30?hh+1:hh, endm=mm===30?15:45;
+    var end=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(endh)+pad(endm)+'00';
+    var url='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Asesoría con '+state.exp.nm+' · CG Academia')+'&dates='+start+'/'+end+'&details='+encodeURIComponent('Videollamada de asesoría 1 a 1.');
+    document.getElementById('gcal').href=url;
+    document.getElementById('overlay').classList.add('show');
+  };
+  document.getElementById('close').onclick=function(){ document.getElementById('overlay').classList.remove('show'); };
+
+  render();
+</script>
+</body>
+</html>
